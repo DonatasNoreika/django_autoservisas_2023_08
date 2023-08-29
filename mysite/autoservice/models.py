@@ -17,7 +17,7 @@ class Automobilis(models.Model):
     automobilio_modelis = models.ForeignKey(to="AutomobilioModelis", verbose_name="Modelis", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.valst_nr} - {self.vin_kodas} ({self.automobilio_modelis})"
+        return f"{self.valst_nr} - {self.vin_kodas} ({self.automobilio_modelis}, {self.kliento_vardas})"
 
 
 class Uzsakymas(models.Model):
