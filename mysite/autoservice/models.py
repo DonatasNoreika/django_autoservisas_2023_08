@@ -17,7 +17,7 @@ class Automobilis(models.Model):
     automobilio_modelis = models.ForeignKey(to="AutomobilioModelis", verbose_name="Modelis", on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.valst_nr} - {self.vin_kodas}"
+        return f"{self.valst_nr} - {self.vin_kodas} ({self.automobilio_modelis})"
 
 
 class Uzsakymas(models.Model):
@@ -33,8 +33,11 @@ class UzsakymoEilute(models.Model):
     paslauga = models.ForeignKey(to="Paslauga", verbose_name="Paslauga", on_delete=models.SET_NULL, null=True)
     kiekis = models.IntegerField(verbose_name="Kiekis")
 
+    def suma(self):
+        return self.paslauga.kaina * self.kiekis
+
     def __str__(self):
-        return f"{self.uzsakymas} ({self.paslauga} - {self.kiekis})"
+        return f"{self.uzsakymas} ({self.paslauga} - {self.kiekis}: {self.suma()})"
 
 
 class Paslauga(models.Model):
