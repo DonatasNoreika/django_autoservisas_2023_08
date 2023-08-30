@@ -13,9 +13,13 @@ class UzsakymasAdmin(admin.ModelAdmin):
 class AutomobilisAdmin(admin.ModelAdmin):
     list_display = ['kliento_vardas', 'automobilio_modelis', 'valst_nr', 'vin_kodas']
 
+
+class PaslaugaAdmin(admin.ModelAdmin):
+    list_display = ['pavadinimas', 'kaina']
+
 # Register your models here.
 admin.site.register(Automobilis, AutomobilisAdmin)
 admin.site.register(AutomobilioModelis)
 admin.site.register(Uzsakymas, UzsakymasAdmin)
 admin.site.register(UzsakymoEilute)
-admin.site.register(Paslauga)
+admin.site.register(Paslauga, PaslaugaAdmin)
