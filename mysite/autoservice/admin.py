@@ -13,6 +13,7 @@ class UzsakymasAdmin(admin.ModelAdmin):
 class AutomobilisAdmin(admin.ModelAdmin):
     list_display = ['kliento_vardas', 'automobilio_modelis', 'valst_nr', 'vin_kodas']
     list_filter = ['kliento_vardas', 'automobilio_modelis__marke', 'automobilio_modelis__modelis']
+    search_fields = ['valst_nr', 'vin_kodas']
 
 class PaslaugaAdmin(admin.ModelAdmin):
     list_display = ['pavadinimas', 'kaina']
