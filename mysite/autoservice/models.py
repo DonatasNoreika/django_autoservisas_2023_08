@@ -9,15 +9,24 @@ class AutomobilioModelis(models.Model):
     def __str__(self):
         return f"{self.marke} {self.modelis}"
 
+    class Meta:
+        verbose_name = 'Automobilio modelis'
+        verbose_name_plural = 'Automobilio modeliai'
+
 
 class Automobilis(models.Model):
     valst_nr = models.CharField(verbose_name="Valstybinis numeris", max_length=20)
     vin_kodas = models.CharField(verbose_name="VIN kodas", max_length=20)
     kliento_vardas = models.CharField(verbose_name="Kliento vardas", max_length=50)
-    automobilio_modelis = models.ForeignKey(to="AutomobilioModelis", verbose_name="Modelis", on_delete=models.SET_NULL, null=True)
+    automobilio_modelis = models.ForeignKey(to="AutomobilioModelis", verbose_name="Modelis", on_delete=models.SET_NULL,
+                                            null=True)
 
     def __str__(self):
         return f"{self.valst_nr} - {self.vin_kodas} ({self.automobilio_modelis}, {self.kliento_vardas})"
+
+    class Meta:
+        verbose_name = 'Automobilis'
+        verbose_name_plural = 'Automobiliai'
 
 
 class Uzsakymas(models.Model):
@@ -26,6 +35,10 @@ class Uzsakymas(models.Model):
 
     def __str__(self):
         return f"{self.data} ({self.automobilis})"
+
+    class Meta:
+        verbose_name = 'Užsakymas'
+        verbose_name_plural = 'Užsakymai'
 
 
 class UzsakymoEilute(models.Model):
@@ -39,6 +52,10 @@ class UzsakymoEilute(models.Model):
     def __str__(self):
         return f"{self.uzsakymas} ({self.paslauga} - {self.kiekis}: {self.suma()})"
 
+    class Meta:
+        verbose_name = 'Eilutė'
+        verbose_name_plural = 'Eilutės'
+
 
 class Paslauga(models.Model):
     pavadinimas = models.CharField(verbose_name="Pavadinimas", max_length=50)
@@ -46,3 +63,7 @@ class Paslauga(models.Model):
 
     def __str__(self):
         return f"{self.pavadinimas} ({self.kaina})"
+
+    class Meta:
+        verbose_name = 'Paslauga'
+        verbose_name_plural = 'Paslaugos'
