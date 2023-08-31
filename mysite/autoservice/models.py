@@ -33,6 +33,15 @@ class Uzsakymas(models.Model):
     data = models.DateField(verbose_name="Data", auto_now_add=True)
     automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE)
 
+    LOAN_STATUS = (
+        ('p', 'Patvirtinta'),
+        ('v', 'Vykdoma'),
+        ('i', 'Įvykdyta'),
+        ('a', 'Atmesta'),
+    )
+
+    status = models.CharField(verbose_name="Būsena", choices=LOAN_STATUS, default="p", max_length=1, blank=True)
+
     def __str__(self):
         return f"{self.data} ({self.automobilis})"
 
