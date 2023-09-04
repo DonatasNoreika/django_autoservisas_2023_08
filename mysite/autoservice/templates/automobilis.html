@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block "title" %}Autoservisas: Automobilis{% endblock %}
+
+{% block "content" %}
+<h1>{{ automobilis.automobilio_modelis }}</h1>
+<p><strong>Valstybinis numeris: </strong>{{ automobilis.valst_nr }}</p>
+<p><strong>VIN kodas: </strong>{{ automobilis.vin_kodas }}</p>
+<p><strong>Savininkas: </strong>{{ automobilis.kliento_vardas }}</p>
+
+{% endblock %}

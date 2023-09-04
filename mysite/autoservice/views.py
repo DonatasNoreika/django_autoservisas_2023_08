@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Paslauga, Uzsakymas, Automobilis
 
 
@@ -20,3 +20,7 @@ def index(request):
 
 def automobiliai(request):
     return render(request, 'automobiliai.html', context={'automobiliai': Automobilis.objects.all()})
+
+
+def automobilis(request, auto_id):
+    return render(request, 'automobilis.html', context={"automobilis": get_object_or_404(Automobilis, pk=auto_id)})

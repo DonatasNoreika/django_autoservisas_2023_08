@@ -5,6 +5,6 @@
 {% block "content" %}
 <h1>Automobiliai:</h1>
 {% for automobilis in automobiliai %}
-<li>{{ automobilis }}</li>
+<li><a href="{% url 'automobilis' automobilis.id %}">{{ automobilis }}</a></li>
 {% endfor %}
 {% endblock %}
