@@ -16,3 +16,7 @@ def index(request):
     }
 
     return render(request, "index.html", context=context)
+
+
+def automobiliai(request):
+    return render(request, 'automobiliai.html', context={'automobiliai': Automobilis.objects.all()})
