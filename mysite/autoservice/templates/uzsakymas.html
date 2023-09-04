@@ -3,7 +3,31 @@
 {% block "title" %}Autoservisas: Užsakymas{% endblock %}
 
 {% block "content" %}
-<h1>Užsakymas:</h1>
-<li>{{ uzsakymas }}</a></li>
-<hr>
+<h1>Užsakymas {{ uzsakymas.data }} </h1>
+<p><strong>Automobilis: </strong>{{ uzsakymas.automobilis }}</p>
+<p><strong>Būsena: </strong>{{ uzsakymas.get_status_display }}</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Paslauga</th>
+        <th>Kaina</th>
+        <th>Kiekis</th>
+        <th>Suma</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for line in uzsakymas.lines.all %}
+    <tr>
+        <td>{{ line.paslauga.pavadinimas }}</td>
+        <td>{{ line.paslauga.kaina }}</td>
+        <td>{{ line.kiekis }}</td>
+        <td>{{ line.suma }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="3"></td>
+        <td><strong>{{ uzsakymas.bendra_suma }}</strong></td>
+    </tr>
+    </tbody>
+</table>
 {% endblock %}

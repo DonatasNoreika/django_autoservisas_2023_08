@@ -42,6 +42,12 @@ class Uzsakymas(models.Model):
 
     status = models.CharField(verbose_name="Būsena", choices=LOAN_STATUS, default="p", max_length=1, blank=True)
 
+    def bendra_suma(self):
+        bendra_suma = 0
+        for line in self.lines.all():
+            bendra_suma += line.suma()
+        return bendra_suma
+
     def __str__(self):
         return f"{self.data} ({self.automobilis})"
 
@@ -51,7 +57,7 @@ class Uzsakymas(models.Model):
 
 
 class UzsakymoEilute(models.Model):
-    uzsakymas = models.ForeignKey(to="Uzsakymas", on_delete=models.CASCADE)
+    uzsakymas = models.ForeignKey(to="Uzsakymas", on_delete=models.CASCADE, related_name='lines')
     paslauga = models.ForeignKey(to="Paslauga", verbose_name="Paslauga", on_delete=models.SET_NULL, null=True)
     kiekis = models.IntegerField(verbose_name="Kiekis")
 
