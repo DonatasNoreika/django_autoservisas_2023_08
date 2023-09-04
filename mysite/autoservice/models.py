@@ -31,7 +31,7 @@ class Automobilis(models.Model):
 
 class Uzsakymas(models.Model):
     data = models.DateField(verbose_name="Data", auto_now_add=True)
-    automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE)
+    automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE, related_name='orders')
 
     LOAN_STATUS = (
         ('p', 'Patvirtinta'),
