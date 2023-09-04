@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block "title" %}Autoservisas: Užsakymai{% endblock %}
+
+{% block "content" %}
+<h1>Užsakymai:</h1>
+{% for uzsakymas in uzsakymai %}
+<li><a href="{% url 'uzsakymas' uzsakymas.id %}">{{ uzsakymas }}</a></li>
+<hr>
+{% endfor %}
+{% endblock %}
