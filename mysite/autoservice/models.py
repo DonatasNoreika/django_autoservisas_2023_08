@@ -20,6 +20,7 @@ class Automobilis(models.Model):
     kliento_vardas = models.CharField(verbose_name="Kliento vardas", max_length=50)
     automobilio_modelis = models.ForeignKey(to="AutomobilioModelis", verbose_name="Modelis", on_delete=models.SET_NULL,
                                             null=True)
+    nuotrauka = models.ImageField(verbose_name="Nuotrauka", upload_to="autos", null=True, blank=True)
 
     def __str__(self):
         return f"{self.valst_nr} - {self.vin_kodas} ({self.automobilio_modelis}, {self.kliento_vardas})"
@@ -31,7 +32,8 @@ class Automobilis(models.Model):
 
 class Uzsakymas(models.Model):
     data = models.DateField(verbose_name="Data", auto_now_add=True)
-    automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE, related_name='orders')
+    automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE,
+                                    related_name='orders')
 
     LOAN_STATUS = (
         ('p', 'Patvirtinta'),

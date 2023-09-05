@@ -3,6 +3,12 @@
 {% block "title" %}Autoservisas: Automobilis{% endblock %}
 
 {% block "content" %}
+{% load static %}
+{% if automobilis.nuotrauka %}
+<img src="{{ automobilis.nuotrauka.url }}" class="card-img-top" alt="...">
+{% else %}
+<img src="{% static 'img/no-image.png' %}" class="card-img-top">
+{% endif %}
 <h1>{{ automobilis.automobilio_modelis }}</h1>
 <p><strong>Valstybinis numeris: </strong>{{ automobilis.valst_nr }}</p>
 <p><strong>VIN kodas: </strong>{{ automobilis.vin_kodas }}</p>

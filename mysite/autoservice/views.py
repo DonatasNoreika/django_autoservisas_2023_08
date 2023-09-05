@@ -22,7 +22,7 @@ def index(request):
 
 
 def automobiliai(request):
-    paginator = Paginator(Automobilis.objects.all(), per_page=2)
+    paginator = Paginator(Automobilis.objects.all(), per_page=5)
     page_number = request.GET.get('page')
     paged_automobiliai = paginator.get_page(page_number)
     return render(request, 'automobiliai.html', context={'automobiliai': paged_automobiliai})
