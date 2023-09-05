@@ -31,6 +31,7 @@ class UzsakymasListView(generic.ListView):
     model = Uzsakymas
     template_name = "uzsakymai.html"
     context_object_name = "uzsakymai"
+    paginate_by = 5
 
 
 class UzsakymasDetailView(generic.DetailView):
