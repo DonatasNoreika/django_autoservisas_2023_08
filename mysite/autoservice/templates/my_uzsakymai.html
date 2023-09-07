@@ -5,7 +5,7 @@
 {% block "content" %}
 <h1>Užsakymai:</h1>
 {% for uzsakymas in uzsakymai %}
-<li><a href="{% url 'uzsakymas' uzsakymas.id %}">{{ uzsakymas }}</a></li>
+<li><a href="{% url 'uzsakymas' uzsakymas.id %}" class="{% if uzsakymas.is_overdue %}text-danger{% endif %}">{{ uzsakymas }}</a></li>
 <hr>
 {% endfor %}
 <div class="pagination">
