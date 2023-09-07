@@ -6,7 +6,7 @@ class UzsakymasInLine(admin.TabularInline):
     extra = 0
 
 class UzsakymasAdmin(admin.ModelAdmin):
-    list_display = ['data', 'automobilis']
+    list_display = ['data', 'automobilis', 'user', 'deadline']
     inlines = [UzsakymasInLine]
 
 
