@@ -34,7 +34,8 @@ class Uzsakymas(models.Model):
     data = models.DateField(verbose_name="Data", auto_now_add=True)
     automobilis = models.ForeignKey(to="Automobilis", verbose_name="Automobilis", on_delete=models.CASCADE,
                                     related_name='orders')
-    user = models.ForeignKey(to=User, verbose_name="Vartotojas", on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(to=User, verbose_name="Vartotojas", on_delete=models.SET_NULL, null=True, blank=True)
+    deadline = models.DateTimeField(verbose_name="Gražinimo data", null=True, blank=True)
 
     LOAN_STATUS = (
         ('p', 'Patvirtinta'),
