@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+import pytz
+
+utc = pytz.UTC
 
 # Create your models here.
 class AutomobilioModelis(models.Model):
@@ -45,6 +49,9 @@ class Uzsakymas(models.Model):
     )
 
     status = models.CharField(verbose_name="Būsena", choices=LOAN_STATUS, default="p", max_length=1, blank=True)
+
+    def is_overdue(self):
+        return self.deadline and self.deadline.replace(tzinfo=utc) < datetime.today().replace(tzinfo=utc)
 
     def bendra_suma(self):
         bendra_suma = 0

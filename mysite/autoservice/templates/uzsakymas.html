@@ -6,6 +6,8 @@
 <h1>Užsakymas {{ uzsakymas.data }} </h1>
 <p><strong>Automobilis: </strong>{{ uzsakymas.automobilis }}</p>
 <p><strong>Būsena: </strong>{{ uzsakymas.get_status_display }}</p>
+<p><strong>Vartotojas: </strong>{{ uzsakymas.user }}</p>
+<!--<p><strong>Ar vėluojam?: </strong>{{ uzsakymas.deadline }}: {{ uzsakymas.is_overdue }}</p>-->
 <table class="table table-striped">
     <thead>
     <tr>
