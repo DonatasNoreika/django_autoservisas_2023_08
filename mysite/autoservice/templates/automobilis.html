@@ -13,6 +13,7 @@
 <p><strong>Valstybinis numeris: </strong>{{ automobilis.valst_nr }}</p>
 <p><strong>VIN kodas: </strong>{{ automobilis.vin_kodas }}</p>
 <p><strong>Savininkas: </strong>{{ automobilis.kliento_vardas }}</p>
+<p>{{ automobilis.aprasymas | safe }}</p>
 <hr>
 <h2>Užsakymai:</h2>
 {% for uzsakymas in automobilis.orders.all %}
