@@ -32,4 +32,15 @@
     </tr>
     </tbody>
 </table>
+<hr>
+<h2>Komentarai:</h2>
+{% if uzsakymas.komentarai.all %}
+    {% for komentaras in uzsakymas.komentarai.all %}
+      <hr>
+      <strong>{{ komentaras.autorius }}</strong>, <em>{{ komentaras.data}}</em>
+      <p>{{ komentaras.tekstas }}</p>
+    {% endfor %}
+  {% else %}
+    <p>Užsakymas neturi komentarų</p>
+  {% endif %}
 {% endblock %}
