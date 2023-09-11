@@ -32,15 +32,26 @@
     </tr>
     </tbody>
 </table>
-<hr>
+{% if user.is_authenticated %}
+<div class="fieldWrapper">
+    <hr>
+    <br/>
+    <h4>Palikite komentarą:</h4>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.tekstas }}</br>
+        <input type="submit" value="Išsaugoti">
+    </form>
+</div>
+{% endif %}
 <h2>Komentarai:</h2>
 {% if uzsakymas.komentarai.all %}
-    {% for komentaras in uzsakymas.komentarai.all %}
-      <hr>
-      <strong>{{ komentaras.autorius }}</strong>, <em>{{ komentaras.data}}</em>
-      <p>{{ komentaras.tekstas }}</p>
-    {% endfor %}
-  {% else %}
-    <p>Užsakymas neturi komentarų</p>
-  {% endif %}
+{% for komentaras in uzsakymas.komentarai.all %}
+<hr>
+<strong>{{ komentaras.autorius }}</strong>, <em>{{ komentaras.data}}</em>
+<p>{{ komentaras.tekstas }}</p>
+{% endfor %}
+{% else %}
+<p>Užsakymas neturi komentarų</p>
+{% endif %}
 {% endblock %}

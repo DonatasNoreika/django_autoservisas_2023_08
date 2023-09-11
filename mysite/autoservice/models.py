@@ -68,6 +68,7 @@ class Uzsakymas(models.Model):
     class Meta:
         verbose_name = 'Užsakymas'
         verbose_name_plural = 'Užsakymai'
+        ordering = ['-id']
 
 
 class UzsakymoEilute(models.Model):
@@ -92,6 +93,9 @@ class UzsakymoKomentaras(models.Model):
     autorius = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.CASCADE)
     data = models.DateTimeField(verbose_name="Data", auto_now_add=True)
     tekstas = models.TextField(verbose_name="Tekstas", max_length=2000)
+
+    class Meta:
+        ordering = ['-data']
 
 
 class Paslauga(models.Model):
