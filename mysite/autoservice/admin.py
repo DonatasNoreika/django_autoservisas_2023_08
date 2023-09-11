@@ -1,13 +1,18 @@
 from django.contrib import admin
-from .models import Automobilis, AutomobilioModelis, Uzsakymas, UzsakymoEilute, Paslauga
+from .models import Automobilis, AutomobilioModelis, Uzsakymas, UzsakymoEilute, Paslauga, UzsakymoKomentaras
 
-class UzsakymasInLine(admin.TabularInline):
+class UzsakymoEiluteInLine(admin.TabularInline):
     model = UzsakymoEilute
+    extra = 0
+
+
+class UzsakymoKomentarasInLine(admin.TabularInline):
+    model = UzsakymoKomentaras
     extra = 0
 
 class UzsakymasAdmin(admin.ModelAdmin):
     list_display = ['data', 'automobilis', 'user', 'deadline']
-    inlines = [UzsakymasInLine]
+    inlines = [UzsakymoEiluteInLine, UzsakymoKomentarasInLine]
 
 
 class AutomobilisAdmin(admin.ModelAdmin):

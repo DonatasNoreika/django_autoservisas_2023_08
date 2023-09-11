@@ -6,6 +6,7 @@ from tinymce.models import HTMLField
 
 utc = pytz.UTC
 
+
 # Create your models here.
 class AutomobilioModelis(models.Model):
     marke = models.CharField(verbose_name="Markė", max_length=100)
@@ -83,6 +84,14 @@ class UzsakymoEilute(models.Model):
     class Meta:
         verbose_name = 'Eilutė'
         verbose_name_plural = 'Eilutės'
+
+
+class UzsakymoKomentaras(models.Model):
+    uzsakymas = models.ForeignKey(to="Uzsakymas", verbose_name="Užsakymas", on_delete=models.CASCADE,
+                                  related_name='komentarai')
+    autorius = models.ForeignKey(to=User, verbose_name="Autorius", on_delete=models.CASCADE)
+    data = models.DateTimeField(verbose_name="Data", auto_now_add=True)
+    tekstas = models.TextField(verbose_name="Tekstas", max_length=2000)
 
 
 class Paslauga(models.Model):
