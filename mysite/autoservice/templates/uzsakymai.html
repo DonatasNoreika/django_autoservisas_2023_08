@@ -5,6 +5,7 @@
 {% block "content" %}
 <h1>Užsakymai:</h1>
 {% for uzsakymas in uzsakymai %}
+<img class="account-img" src="{{ uzsakymas.user.profile.image.url }}">
 <li><a href="{% url 'uzsakymas' uzsakymas.id %}">{{ uzsakymas }}</a></li>
 <hr>
 {% endfor %}
