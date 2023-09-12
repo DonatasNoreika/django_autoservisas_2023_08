@@ -108,3 +108,8 @@ class Paslauga(models.Model):
     class Meta:
         verbose_name = 'Paslauga'
         verbose_name_plural = 'Paslaugos'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(to=User, verbose_name="Vartotojas", on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name="Nuotrauka", upload_to="profile_pics", default="profile_pics/default.png")
