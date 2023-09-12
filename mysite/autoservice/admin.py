@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Automobilis, AutomobilioModelis, Uzsakymas, UzsakymoEilute, Paslauga, UzsakymoKomentaras
+from .models import (Automobilis,
+                     AutomobilioModelis,
+                     Uzsakymas,
+                     UzsakymoEilute,
+                     Paslauga,
+                     UzsakymoKomentaras,
+                     Profile)
 
 class UzsakymoEiluteInLine(admin.TabularInline):
     model = UzsakymoEilute
@@ -29,3 +35,4 @@ admin.site.register(AutomobilioModelis)
 admin.site.register(Uzsakymas, UzsakymasAdmin)
 admin.site.register(UzsakymoEilute)
 admin.site.register(Paslauga, PaslaugaAdmin)
+admin.site.register(Profile)
