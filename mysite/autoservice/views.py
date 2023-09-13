@@ -201,3 +201,15 @@ class UzsakymoEiluteCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.
         form.save()
         return super().form_valid(form)
 
+
+class UzsakymoEiluteDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = UzsakymoEilute
+    template_name = 'uzsakymoeilute_delete.html'
+    context_object_name = 'uzsakymoeilute'
+
+    def get_success_url(self):
+        return reverse('uzsakymas', kwargs={'pk': self.kwargs['uzsakymas_id']})
+
+    def test_func(self):
+        uzsakymas = self.get_object().uzsakymas
+        return uzsakymas.user == self.request.user

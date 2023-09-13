@@ -21,6 +21,7 @@
         <th>Kaina</th>
         <th>Kiekis</th>
         <th>Suma</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -30,11 +31,20 @@
         <td>{{ line.paslauga.kaina }}</td>
         <td>{{ line.kiekis }}</td>
         <td>{{ line.suma }}</td>
+        <td>
+            {% if uzsakymas.user == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="">Redaguoti</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'uzsakymoeilute_delete' uzsakymas.id line.id %}">Ištrinti</a>
+                </div>
+            {% endif %}
+        </td>
     </tr>
     {% endfor %}
     <tr>
         <td colspan="3"></td>
         <td><strong>{{ uzsakymas.bendra_suma }}</strong></td>
+        <td></td>
     </tr>
     </tbody>
 </table>
