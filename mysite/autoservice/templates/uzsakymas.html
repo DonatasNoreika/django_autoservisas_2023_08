@@ -38,6 +38,13 @@
     </tr>
     </tbody>
 </table>
+{% if uzsakymas.user == user %}
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'uzsakymoeilute_new' uzsakymas.id %}">Pridėti paslaugą</a>
+</div>
+{% endif %}
+
+
 {% if user.is_authenticated %}
 <div class="fieldWrapper">
     <hr>

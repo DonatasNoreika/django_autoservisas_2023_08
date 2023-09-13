@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Paslauga, Uzsakymas, Automobilis
+from .models import Paslauga, Uzsakymas, Automobilis, UzsakymoEilute
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -181,4 +181,23 @@ class UzsakymasDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delet
 
     def test_func(self):
         return self.get_object().user == self.request.user
+
+
+class UzsakymoEiluteCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = UzsakymoEilute
+    template_name = 'uzsakymoeilute_form.html'
+    # success_url = "/myuzsakymai/"
+    fields = ['paslauga', 'kiekis']
+
+    def test_func(self):
+        uzsakymas = self.get_object().uzsakymas
+        return uzsakymas.user == self.request.user
+
+    def get_success_url(self):
+        return reverse('uzsakymas', kwargs={'pk': self.kwargs['pk']})
+
+    def form_valid(self, form):
+        form.instance.uzsakymas = Uzsakymas.objects.get(pk=self.kwargs['pk'])
+        form.save()
+        return super().form_valid(form)
 
