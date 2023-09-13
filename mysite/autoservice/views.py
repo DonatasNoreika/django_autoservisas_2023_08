@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormMixin
 from .forms import UzsakymoKomentarasForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 def index(request):
@@ -153,3 +153,20 @@ class UzsakymasCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.user = self.request.user
         form.save()
         return super().form_valid(form)
+
+
+class UzsakymasUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Uzsakymas
+    template_name = "uzsakymas_form.html"
+    success_url = "/myuzsakymai/"
+    fields = ['automobilis', 'deadline', 'status']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+    def test_func(self):
+        return self.get_object().user == self.request.user
+
+

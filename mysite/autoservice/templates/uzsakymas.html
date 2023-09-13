@@ -7,7 +7,12 @@
 <p><strong>Automobilis: </strong>{{ uzsakymas.automobilis }}</p>
 <p><strong>Būsena: </strong>{{ uzsakymas.get_status_display }}</p>
 <p><strong>Vartotojas: </strong>{{ uzsakymas.user }}</p>
-<!--<p><strong>Ar vėluojam?: </strong>{{ uzsakymas.deadline }}: {{ uzsakymas.is_overdue }}</p>-->
+<p><strong>Darbų pabaigimas: </strong><span class="{% if uzsakymas.is_overdue%}text-danger{% endif %}">{{ uzsakymas.deadline }}</span></p>
+{% if uzsakymas.user == user %}
+<div>
+    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'uzsakymas_update' uzsakymas.id %}">Redaguoti</a>
+</div>
+{% endif %}
 <table class="table table-striped">
     <thead>
     <tr>
