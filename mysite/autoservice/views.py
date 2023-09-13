@@ -41,8 +41,6 @@ def automobilis(request, auto_id):
     return render(request, 'automobilis.html', context={"automobilis": get_object_or_404(Automobilis, pk=auto_id)})
 
 
-
-
 def search(request):
     query = request.GET.get("query")
     search_results = Automobilis.objects.filter(
@@ -112,11 +110,13 @@ class MyUzsakymasListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return Uzsakymas.objects.filter(user=self.request.user)
 
+
 class UzsakymasListView(generic.ListView):
     model = Uzsakymas
     template_name = "uzsakymai.html"
     context_object_name = "uzsakymai"
     paginate_by = 5
+
 
 class UzsakymasDetailView(FormMixin, generic.DetailView):
     model = Uzsakymas
@@ -139,5 +139,17 @@ class UzsakymasDetailView(FormMixin, generic.DetailView):
     def form_valid(self, form):
         form.instance.uzsakymas = self.object
         form.instance.autorius = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+
+class UzsakymasCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Uzsakymas
+    template_name = "uzsakymas_form.html"
+    success_url = "/myuzsakymai/"
+    fields = ['automobilis', 'deadline', 'status']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
         form.save()
         return super().form_valid(form)

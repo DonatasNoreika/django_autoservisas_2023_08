@@ -3,6 +3,9 @@
 {% block "title" %}Autoservisas: Mano užsakymai{% endblock %}
 
 {% block "content" %}
+
+<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'uzsakymas_new' %}">Naujas užsakymas</a>
+
 <h1>Užsakymai:</h1>
 {% for uzsakymas in uzsakymai %}
 <li><a href="{% url 'uzsakymas' uzsakymas.id %}" class="{% if uzsakymas.is_overdue %}text-danger{% endif %}">{{ uzsakymas }}</a></li>
